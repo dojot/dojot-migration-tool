@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+
+  syncronizer:
+    build:
+      context: .
+      dockerfile: .docker/sync.dockerfile
+    env_file:
+      - .env.source
+      - .env.target    
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - postgres
+
+  postgres:
+    image: dojot/postgres:9.4.24-alpine
+    restart: always
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - dumps-volume:/tmp
+    logging:
+      driver: json-file
+
+volumes:
+  dumps-volume:

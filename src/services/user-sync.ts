@@ -14,7 +14,7 @@ export class UserSync extends DojotSyncronizer {
 
     for (const user of users) {
       try {
-        await axios.post("http://localhost:8001/consumers", {
+        await axios.post(`http://${process.env.TARGET_APIGW_HOST}:${process.env.TARGET_APIGW_PORT}/consumers`, {
           username: user.username,
         });
       } catch (error) {
@@ -22,7 +22,7 @@ export class UserSync extends DojotSyncronizer {
       }
 
       const response = await axios.post(
-        `http://localhost:8001/consumers/${user.username}/jwt`,
+        `http://${process.env.TARGET_APIGW_HOST}:${process.env.TARGET_APIGW_PORT}/consumers/${user.username}/jwt`,
         "",
         {
           headers: {
