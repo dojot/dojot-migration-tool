@@ -1,6 +1,6 @@
 import { EntityManager } from "typeorm";
 
-export class DojotSyncronizer {
+export abstract class DojotSyncronizer {
   oldDB: EntityManager;
   newDB: EntityManager;
 
@@ -8,4 +8,6 @@ export class DojotSyncronizer {
     this.oldDB = oldDB;
     this.newDB = newDB;
   }
+
+  abstract run(): void;
 }

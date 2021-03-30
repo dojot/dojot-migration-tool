@@ -8,6 +8,7 @@ import { PermissionSync } from "./services/permission-sync";
 import { UserGroupSync } from "./services/user-group-sync";
 import { UserSync } from "./services/user-sync";
 import { DeprecatedPermissionsSync } from "./services/depracated-permissions-sync";
+import { PasswordInactiveSync } from "./services/password-inactive-sync";
 
 createConnections()
   .then(async () => {
@@ -23,6 +24,7 @@ createConnections()
       await new GroupPermissionSync(fourThree, fiveZero).run();
       await new UserPermissionSync(fourThree, fiveZero).run();
       await new DeprecatedPermissionsSync(fourThree, fiveZero).run();
+      await new PasswordInactiveSync(fourThree, fiveZero).run();
     } catch (error) {
       console.log(error);
     }
