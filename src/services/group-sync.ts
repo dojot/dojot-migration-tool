@@ -1,7 +1,4 @@
-import { EntityManager, Equal, In, Not } from "typeorm";
-import { User } from "../entity/User";
 import { DojotSyncronizer } from "./dojot-syncronizer";
-import axios from "axios";
 import { Group } from "../entity/Group";
 
 export class GroupSync extends DojotSyncronizer {

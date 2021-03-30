@@ -1,4 +1,3 @@
-import { EntityManager, Equal, Not } from "typeorm";
 import { User } from "../entity/User";
 import { DojotSyncronizer } from "./dojot-syncronizer";
 import axios from "axios";
@@ -12,7 +11,6 @@ export class UserSync extends DojotSyncronizer {
     } catch (error) {
       console.log(error);
     }
-    
 
     for (const user of users) {
       try {
@@ -22,7 +20,7 @@ export class UserSync extends DojotSyncronizer {
       } catch (error) {
         console.log(`Fail to create consumer...${user.name}`);
       }
-      
+
       const response = await axios.post(
         `http://localhost:8001/consumers/${user.username}/jwt`,
         "",
@@ -33,20 +31,18 @@ export class UserSync extends DojotSyncronizer {
         }
       );
 
-      console.log(response.data);
-
       await this.newDB
-      .createQueryBuilder()
-      .update(User)
-      .where({
-        id: user.id,
-      })
-      .set({
-        key: response.data.key,
-        secret: response.data.secret,
-        kongId: response.data.id,
-      })
-      .execute();
+        .createQueryBuilder()
+        .update(User)
+        .where({
+          id: user.id,
+        })
+        .set({
+          key: response.data.key,
+          secret: response.data.secret,
+          kongId: response.data.id,
+        })
+        .execute();
     }
   }
 }

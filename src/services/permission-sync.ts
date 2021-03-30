@@ -1,8 +1,4 @@
-import { EntityManager, Equal, In, Not } from "typeorm";
-import { User } from "../entity/User";
 import { DojotSyncronizer } from "./dojot-syncronizer";
-import axios from "axios";
-import { Group } from "../entity/Group";
 import { Permission } from "../entity/Permission";
 
 export class PermissionSync extends DojotSyncronizer {
@@ -15,28 +11,27 @@ export class PermissionSync extends DojotSyncronizer {
       .update(Permission)
       .where({
         path: "/import/(.*)",
-        name: "all_import"
+        name: "all_import",
       })
       .set({
         method: "POST",
-        name: "wo_import"
+        name: "wo_import",
       })
       .execute();
 
-
-      await this.newDB
+    await this.newDB
       .createQueryBuilder()
       .update(Permission)
       .where({
         path: "/ca/(.*)",
         name: "ro_ca",
-        method: "GET"
+        method: "GET",
       })
       .set({
         path: "/x509/v1/ca/(.*)",
-        name: "ro_x509_ca"
+        name: "ro_x509_ca",
       })
-      .execute();  
+      .execute();
 
     await this.newDB
       .createQueryBuilder()

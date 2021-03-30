@@ -7,7 +7,7 @@
    "password": "postgres",
    "database": "dojot_auth",
    "synchronize": false,
-   "logging": true,
+   "logging": false,
    "entities": [
       "src/entity/**/*.ts"
    ],
