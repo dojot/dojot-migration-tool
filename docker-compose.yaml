@@ -6,9 +6,9 @@ services:
     build:
       context: .
       dockerfile: .docker/sync.dockerfile
+    image: dojot-migration-tool:latest
     env_file:
-      - .env.source
-      - .env.target    
+      - vars.env
     volumes:
       - ./:/usr/src/app
       - node_modules:/usr/src/app/node_modules

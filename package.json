@@ -16,7 +16,7 @@
       "typeorm": "0.2.31"
    },
    "scripts": {
-      "start": "ts-node src/index.ts --watch",
+      "serve": "ts-node src/index.ts --watch",
       "sync": "ts-node src/sync.ts"
    }
 }

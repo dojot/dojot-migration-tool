@@ -1,0 +1,12 @@
+echo "Starting restore proccess..."
+PGPASSWORD="${TARGET_PG_PASSWORD}" psql -h $TARGET_PG_HOST -U $TARGET_PG_USER -c 'drop database dojot_auth_043'
+PGPASSWORD="${TARGET_PG_PASSWORD}" psql -h $TARGET_PG_HOST -U $TARGET_PG_USER -c 'create database dojot_auth_043'
+PGPASSWORD="${TARGET_PG_PASSWORD}" pg_restore -c -h $TARGET_PG_HOST -U $TARGET_PG_USER -d dojot_auth_043 ./dumps/pg/dojot_auth.sql
+echo "Postgres: dojot_auth database has been restored"
+PGPASSWORD="${TARGET_PG_PASSWORD}" pg_restore -c --role devm -h $TARGET_PG_HOST -U $TARGET_PG_USER -d dojot_devm ./dumps/pg/dojot_devm.sql
+echo "Postgres: dojot_devm database has been restored"
+PGPASSWORD="${TARGET_PG_PASSWORD}" pg_restore -c --role imgm -h $TARGET_PG_HOST -U $TARGET_PG_USER -d dojot_imgm ./dumps/pg/dojot_imgm.sql
+echo "Postgres: dojot_imgm database restored"
+mongorestore --quiet --host=$TARGET_MG_HOST --port=$TARGET_MG_PORT ./dumps/mg/
+echo "MongoDB: all database restored"   
+echo "Restore proccess finished!"

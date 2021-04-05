@@ -1,0 +1,3 @@
+echo "Starting sync proccess..."
+yarn sync
+echo "Sync proccess finished!"

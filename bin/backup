@@ -1,0 +1,10 @@
+echo "Starting backup proccess..."
+PGPASSWORD="${SOURCE_PG_PASSWORD}" pg_dump -h $SOURCE_PG_HOST -U $SOURCE_PG_USER -d dojot_auth -O -c -Fc > ./dumps/pg/dojot_auth.sql
+echo "Postgres: dojot_auth database has been dumped"
+PGPASSWORD="${SOURCE_PG_PASSWORD}" pg_dump -h $SOURCE_PG_HOST -U $SOURCE_PG_USER -d dojot_devm -O -c -Fc > ./dumps/pg/dojot_devm.sql
+echo "Postgres: dojot_devm database has been dumped"
+PGPASSWORD="${SOURCE_PG_PASSWORD}" pg_dump -h $SOURCE_PG_HOST -U $SOURCE_PG_USER -d dojot_imgm -O -c -Fc > ./dumps/pg/dojot_imgm.sql
+echo "Postgres: dojot_imgm database has been dumped"
+mongodump --host=$SOURCE_MG_HOST --port=$SOURCE_MG_PORT --out=./dumps/mg/
+echo "MongoDB: all databases have been dumped"
+echo "Backup proccess finished!"
