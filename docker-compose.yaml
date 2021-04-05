@@ -11,7 +11,7 @@ services:
       - .env.target    
     volumes:
       - ./:/usr/src/app
-      - /usr/src/app/node_modules
+      - node_modules:/usr/src/app/node_modules
     depends_on:
       - postgres
 
@@ -44,3 +44,4 @@ services:
 
 volumes:
   dumps-volume:
+  node_modules:
