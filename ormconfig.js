@@ -1,0 +1,41 @@
+module.exports = [
+  {
+    name: "0.5.0",
+    type: "postgres",
+    host: process.env.TARGET_DB_HOST,
+    port: process.env.TARGET_DB_PORT,
+    username: process.env.TARGET_DB_USER,
+    password: process.env.TARGET_DB_PASSWORD,
+    database: "dojot_auth",
+    synchronize: false,
+    logging: false,
+    entities: ["src/entity/**/*.ts"],
+    migrations: ["src/migration/**/*.ts"],
+    subscribers: ["src/subscriber/**/*.ts"],
+    cli: {
+      entitiesDir: "src/entity",
+      migrationsDir: "src/migration",
+      subscribersDir: "src/subscriber",
+    },
+  },
+
+  {
+    name: "0.4.3",
+    type: "postgres",
+    host: process.env.TARGET_DB_HOST,
+    port: process.env.TARGET_DB_PORT,
+    username: process.env.TARGET_DB_USER,
+    password: process.env.TARGET_DB_PASSWORD,
+    database: "dojot_auth_043",
+    synchronize: false,
+    logging: false,
+    entities: ["src/entity/**/*.ts"],
+    migrations: ["src/migration/**/*.ts"],
+    subscribers: ["src/subscriber/**/*.ts"],
+    cli: {
+      entitiesDir: "src/entity",
+      migrationsDir: "src/migration",
+      subscribersDir: "src/subscriber",
+    },
+  },
+];
