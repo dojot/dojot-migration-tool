@@ -1,0 +1,5 @@
+backup
+sleep 3
+restore
+sleep 3
+sync

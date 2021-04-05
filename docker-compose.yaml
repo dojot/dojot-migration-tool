@@ -19,8 +19,7 @@ services:
     image: dojot/postgres:9.4.24-alpine
     restart: always
     env_file:
-      - .env.source
-      - .env.target
+       - vars.env
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres"]
       interval: 10s
