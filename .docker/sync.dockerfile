@@ -15,7 +15,7 @@ COPY bin/* /usr/local/bin/
 RUN chmod +x /usr/local/bin/backup
 RUN chmod +x /usr/local/bin/restore
 RUN chmod +x /usr/local/bin/sync
-RUN chmod +x /usr/local/bin/run
+RUN chmod +x /usr/local/bin/migrate
 
 RUN mkdir -p ./dumps/mg
 RUN mkdir -p ./dumps/pg 

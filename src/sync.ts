@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { createConnections, Equal, getConnection, Not } from "typeorm";
+import { createConnections, getConnection } from "typeorm";
 import { ClearDB } from "./services/clear-db";
 import { GroupPermissionSync } from "./services/group-permission-sync";
 import { UserPermissionSync } from "./services/user-permission-sync";
